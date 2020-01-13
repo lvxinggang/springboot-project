@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mes.systemmanage.dao.SysRoleMapper">
+  <resultMap id="RoleResultMap" type="com.project.mes.systemmanage.bean.SysRole">
+    <!--@mbg.generated-->
+    <id column="RoleId" jdbcType="BIGINT" property="roleid" />
+    <result column="RoleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="CorpId" jdbcType="BIGINT" property="corpid" />
+    <result column="InputEmpId" jdbcType="BIGINT" property="inputempid" />
+    <result column="InputEmpName" jdbcType="VARCHAR" property="inputempname" />
+    <result column="InputDateTime" jdbcType="TIMESTAMP" property="inputdatetime" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Role_Column_List">
+    <!--@mbg.generated-->
+    RoleId, RoleName, CorpId, InputEmpId, InputEmpName, InputDateTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="RoleResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Role_Column_List" />
+    from sys_role
+    where RoleId = #{roleid,jdbcType=BIGINT}
+  </select>
+
+  <select id="countRole" resultType="java.lang.Integer" parameterType="com.project.mes.systemmanage.bean.SysRole">
+    SELECT COUNT(*) FROM sys_role
+    <where>
+      <if test=" sysRole.rolename != null and sysRole.rolename != '' ">
+        <bind name="rname" value=" '%' + sysRole.rolename + '%' "></bind>
+        RoleName like #{rolename}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectRole" resultMap="RoleResultMap" parameterType="com.project.mes.systemmanage.bean.SysRole">
+    SELECT
+    <include refid="Role_Column_List"/>
+    FROM sys_role
+    <where>
+      <if test=" sysRole.rolename != null and sysRole.rolename != '' ">
+        <bind name="rname" value=" '%' + sysRole.rolename + '%' "></bind>
+        RoleName like #{rolename}
+      </if>
+    </where>
+    limit ${startIndex},${pageSize}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_role
+    where RoleId = #{roleid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="RoleId" keyProperty="roleid" parameterType="com.project.mes.systemmanage.bean.SysRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_role (RoleName, CorpId, InputEmpId, 
+      InputEmpName, InputDateTime, Remark
+      )
+    values (#{rolename,jdbcType=VARCHAR}, #{corpid,jdbcType=BIGINT}, #{inputempid,jdbcType=BIGINT}, 
+      #{inputempname,jdbcType=VARCHAR}, #{inputdatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RoleId" keyProperty="roleid" parameterType="com.project.mes.systemmanage.bean.SysRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rolename != null">
+        RoleName,
+      </if>
+      <if test="corpid != null">
+        CorpId,
+      </if>
+      <if test="inputempid != null">
+        InputEmpId,
+      </if>
+      <if test="inputempname != null">
+        InputEmpName,
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempid != null">
+        #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.mes.systemmanage.bean.SysRole">
+    <!--@mbg.generated-->
+    update sys_role
+    <set>
+      <if test="rolename != null">
+        RoleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        CorpId = #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempid != null">
+        InputEmpId = #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RoleId = #{roleid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.mes.systemmanage.bean.SysRole">
+    <!--@mbg.generated-->
+    update sys_role
+    set RoleName = #{rolename,jdbcType=VARCHAR},
+      CorpId = #{corpid,jdbcType=BIGINT},
+      InputEmpId = #{inputempid,jdbcType=BIGINT},
+      InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where RoleId = #{roleid,jdbcType=BIGINT}
+  </update>
+</mapper>

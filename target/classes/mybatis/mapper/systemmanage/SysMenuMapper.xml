@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mes.systemmanage.dao.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.project.mes.systemmanage.bean.SysMenu">
+    <!--@mbg.generated-->
+    <id column="MenuId" jdbcType="VARCHAR" property="menuid" />
+    <result column="MenuName" jdbcType="VARCHAR" property="menuname" />
+    <result column="ParentNodeId" jdbcType="VARCHAR" property="parentnodeid" />
+    <result column="SeqNo" jdbcType="VARCHAR" property="seqno" />
+    <result column="PageURL" jdbcType="VARCHAR" property="pageurl" />
+    <result column="IconURL" jdbcType="VARCHAR" property="iconurl" />
+    <result column="IsVisible" jdbcType="VARCHAR" property="isvisible" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <collection property="childMenus" ofType="com.project.mes.systemmanage.bean.SysMenu" javaType="java.util.List">
+      <id column="sMenuId" property="menuid" jdbcType="VARCHAR"/>
+      <result column="sMenuName" property="menuname" jdbcType="VARCHAR"/>
+      <result column="sParentNodeId" property="parentnodeid" jdbcType="VARCHAR"/>
+      <result column="sSeqNo" property="seqno" jdbcType="VARCHAR"/>
+      <result column="sPageURL" property="pageurl" jdbcType="VARCHAR"/>
+      <result column="sIconURL" property="iconurl" jdbcType="VARCHAR"/>
+      <result column="sIsVisible" property="isvisible" jdbcType="VARCHAR"/>
+      <result column="sRemark" property="remark" jdbcType="VARCHAR"/>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    MenuId, MenuName, ParentNodeId, SeqNo, PageURL, IconURL, IsVisible, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where MenuId = #{menuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from sys_menu
+    where MenuId = #{menuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.mes.systemmanage.bean.SysMenu">
+    <!--@mbg.generated-->
+    insert into sys_menu (MenuId, MenuName, ParentNodeId, 
+      SeqNo, PageURL, IconURL, 
+      IsVisible, Remark)
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{parentnodeid,jdbcType=VARCHAR}, 
+      #{seqno,jdbcType=VARCHAR}, #{pageurl,jdbcType=VARCHAR}, #{iconurl,jdbcType=VARCHAR}, 
+      #{isvisible,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.mes.systemmanage.bean.SysMenu">
+    <!--@mbg.generated-->
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        MenuId,
+      </if>
+      <if test="menuname != null">
+        MenuName,
+      </if>
+      <if test="parentnodeid != null">
+        ParentNodeId,
+      </if>
+      <if test="seqno != null">
+        SeqNo,
+      </if>
+      <if test="pageurl != null">
+        PageURL,
+      </if>
+      <if test="iconurl != null">
+        IconURL,
+      </if>
+      <if test="isvisible != null">
+        IsVisible,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnodeid != null">
+        #{parentnodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="seqno != null">
+        #{seqno,jdbcType=VARCHAR},
+      </if>
+      <if test="pageurl != null">
+        #{pageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null">
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isvisible != null">
+        #{isvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.mes.systemmanage.bean.SysMenu">
+    <!--@mbg.generated-->
+    update sys_menu
+    <set>
+      <if test="menuname != null">
+        MenuName = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnodeid != null">
+        ParentNodeId = #{parentnodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="seqno != null">
+        SeqNo = #{seqno,jdbcType=VARCHAR},
+      </if>
+      <if test="pageurl != null">
+        PageURL = #{pageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null">
+        IconURL = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isvisible != null">
+        IsVisible = #{isvisible,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MenuId = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.mes.systemmanage.bean.SysMenu">
+    <!--@mbg.generated-->
+    update sys_menu
+    set MenuName = #{menuname,jdbcType=VARCHAR},
+      ParentNodeId = #{parentnodeid,jdbcType=VARCHAR},
+      SeqNo = #{seqno,jdbcType=VARCHAR},
+      PageURL = #{pageurl,jdbcType=VARCHAR},
+      IconURL = #{iconurl,jdbcType=VARCHAR},
+      IsVisible = #{isvisible,jdbcType=VARCHAR},
+    Remark = #{remark,jdbcType=VARCHAR}
+    where MenuId = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    select s1.*,s2.MenuId sMenuId,s2.MenuName sMenuName,s2.ParentNodeId sParentNodeId,s2.SeqNo sSeqNo,
+        s2.PageURL sPageURL,s2.IconURL sIconURL,s2.IsVisible sIsVisible,s2.Remark sRemark
+        from sys_menu s1 inner join sys_menu s2  on s1.MenuId=s2.ParentNodeId;
+  </select>
+  <select id="findByParentnodeid" resultMap="BaseResultMap">
+  select s1.*,s2.MenuId sMenuId,s2.MenuName sMenuName,s2.ParentNodeId sParentNodeId,s2.SeqNo sSeqNo,
+  s2.PageURL sPageURL,s2.IconURL sIconURL,s2.IsVisible sIsVisible,s2.Remark sRemark
+  from sys_menu s1 inner join sys_menu s2  on s1.MenuId=s2.ParentNodeId where s2.ParentNodeId=#{menuid};
+  </select>
+</mapper>

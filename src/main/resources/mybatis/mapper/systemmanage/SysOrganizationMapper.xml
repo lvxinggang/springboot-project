@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mes.systemmanage.dao.SysOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.project.mes.systemmanage.bean.SysOrganization">
+    <!--@mbg.generated-->
+    <id column="OrgId" jdbcType="BIGINT" property="orgid" />
+    <result column="OrgName" jdbcType="VARCHAR" property="orgname" />
+    <result column="CorpId" jdbcType="BIGINT" property="corpid" />
+    <result column="ParentOrgId" jdbcType="BIGINT" property="parentorgid" />
+    <result column="Level" property="level" />
+    <result column="Tel" jdbcType="VARCHAR" property="tel" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="OnWorkTime" jdbcType="VARCHAR" property="onworktime" />
+    <result column="OffWorkTime" jdbcType="VARCHAR" property="offworktime" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="ContactTel" jdbcType="VARCHAR" property="contacttel" />
+    <result column="Manager1" jdbcType="VARCHAR" property="manager1" />
+    <result column="Manager1Tel" jdbcType="VARCHAR" property="manager1tel" />
+    <result column="Manager2" jdbcType="VARCHAR" property="manager2" />
+    <result column="Manager2Tel" jdbcType="VARCHAR" property="manager2tel" />
+    <result column="InputEmpId" jdbcType="BIGINT" property="inputempid" />
+    <result column="InputEmpName" jdbcType="VARCHAR" property="inputempname" />
+    <result column="InputDateTime" jdbcType="TIMESTAMP" property="inputdatetime" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <collection property="factoryChild" ofType="com.project.mes.systemmanage.bean.SysOrganization" javaType="java.util.List">
+      <id column="fOrgId" jdbcType="BIGINT" property="orgid" />
+      <result column="fOrgName" jdbcType="VARCHAR" property="orgname" />
+      <result column="fCorpId" jdbcType="BIGINT" property="corpid" />
+      <result column="fParentOrgId" jdbcType="BIGINT" property="parentorgid" />
+      <result column="fLevel" property="level" />
+      <result column="fTel" jdbcType="VARCHAR" property="tel" />
+      <result column="fAddress" jdbcType="VARCHAR" property="address" />
+      <result column="fOnWorkTime" jdbcType="VARCHAR" property="onworktime" />
+      <result column="fOffWorkTime" jdbcType="VARCHAR" property="offworktime" />
+      <result column="fContact" jdbcType="VARCHAR" property="contact" />
+      <result column="fContactTel" jdbcType="VARCHAR" property="contacttel" />
+      <result column="fManager1" jdbcType="VARCHAR" property="manager1" />
+      <result column="fManager1Tel" jdbcType="VARCHAR" property="manager1tel" />
+      <result column="fManager2" jdbcType="VARCHAR" property="manager2" />
+      <result column="fManager2Tel" jdbcType="VARCHAR" property="manager2tel" />
+      <result column="fInputEmpId" jdbcType="BIGINT" property="inputempid" />
+      <result column="fInputEmpName" jdbcType="VARCHAR" property="inputempname" />
+      <result column="fInputDateTime" jdbcType="TIMESTAMP" property="inputdatetime" />
+      <result column="fRemark" jdbcType="VARCHAR" property="remark" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    OrgId, OrgName, CorpId, ParentOrgId,Level, Tel, Address, OnWorkTime, OffWorkTime, Contact,
+    ContactTel, Manager1, Manager1Tel, Manager2, Manager2Tel, InputEmpId, InputEmpName, 
+    InputDateTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_organization
+    where OrgId = #{orgid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from sys_organization
+    where OrgId = #{orgid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="OrgId" keyProperty="orgid" parameterType="com.project.mes.systemmanage.bean.SysOrganization" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    <selectKey keyProperty="orgid" resultType="java.lang.Long" order="AFTER">
+      select sys_organization_OrgId()
+    </selectKey>
+    insert into sys_organization (OrgName, CorpId, ParentOrgId,Level,
+      Tel, Address, OnWorkTime, 
+      OffWorkTime, Contact, ContactTel, 
+      Manager1, Manager1Tel, Manager2, 
+      Manager2Tel, InputEmpId, InputEmpName, 
+      InputDateTime, Remark)
+    values (#{orgname,jdbcType=VARCHAR}, #{corpid,jdbcType=BIGINT}, #{parentorgid,jdbcType=BIGINT},#{level},
+      #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{onworktime,jdbcType=VARCHAR}, 
+      #{offworktime,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{contacttel,jdbcType=VARCHAR}, 
+      #{manager1,jdbcType=VARCHAR}, #{manager1tel,jdbcType=VARCHAR}, #{manager2,jdbcType=VARCHAR}, 
+      #{manager2tel,jdbcType=VARCHAR}, #{inputempid,jdbcType=BIGINT}, #{inputempname,jdbcType=VARCHAR}, 
+      #{inputdatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="OrgId" keyProperty="orgid" parameterType="com.project.mes.systemmanage.bean.SysOrganization" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgname != null">
+        OrgName,
+      </if>
+      <if test="corpid != null">
+        CorpId,
+      </if>
+      <if test="parentorgid != null">
+        ParentOrgId,
+      </if>
+      <if test="level != null">
+        Level,
+      </if>
+      <if test="tel != null">
+        Tel,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="onworktime != null">
+        OnWorkTime,
+      </if>
+      <if test="offworktime != null">
+        OffWorkTime,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="contacttel != null">
+        ContactTel,
+      </if>
+      <if test="manager1 != null">
+        Manager1,
+      </if>
+      <if test="manager1tel != null">
+        Manager1Tel,
+      </if>
+      <if test="manager2 != null">
+        Manager2,
+      </if>
+      <if test="manager2tel != null">
+        Manager2Tel,
+      </if>
+      <if test="inputempid != null">
+        InputEmpId,
+      </if>
+      <if test="inputempname != null">
+        InputEmpName,
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgname != null">
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="parentorgid != null">
+        #{parentorgid,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        #{level},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="onworktime != null">
+        #{onworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="offworktime != null">
+        #{offworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null">
+        #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="manager1 != null">
+        #{manager1,jdbcType=VARCHAR},
+      </if>
+      <if test="manager1tel != null">
+        #{manager1tel,jdbcType=VARCHAR},
+      </if>
+      <if test="manager2 != null">
+        #{manager2,jdbcType=VARCHAR},
+      </if>
+      <if test="manager2tel != null">
+        #{manager2tel,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempid != null">
+        #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.mes.systemmanage.bean.SysOrganization">
+    <!--@mbg.generated-->
+    update sys_organization
+    <set>
+      <if test="orgname != null">
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        CorpId = #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="parentorgid != null">
+        ParentOrgId = #{parentorgid,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        Level = #{level},
+      </if>
+      <if test="tel != null">
+        Tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="onworktime != null">
+        OnWorkTime = #{onworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="offworktime != null">
+        OffWorkTime = #{offworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null">
+        ContactTel = #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="manager1 != null">
+        Manager1 = #{manager1,jdbcType=VARCHAR},
+      </if>
+      <if test="manager1tel != null">
+        Manager1Tel = #{manager1tel,jdbcType=VARCHAR},
+      </if>
+      <if test="manager2 != null">
+        Manager2 = #{manager2,jdbcType=VARCHAR},
+      </if>
+      <if test="manager2tel != null">
+        Manager2Tel = #{manager2tel,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempid != null">
+        InputEmpId = #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OrgId = #{orgid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.mes.systemmanage.bean.SysOrganization">
+    <!--@mbg.generated-->
+    update sys_organization
+    set OrgName = #{orgname,jdbcType=VARCHAR},
+      CorpId = #{corpid,jdbcType=BIGINT},
+      ParentOrgId = #{parentorgid,jdbcType=BIGINT},
+      Level = #{level},
+      Tel = #{tel,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      OnWorkTime = #{onworktime,jdbcType=VARCHAR},
+      OffWorkTime = #{offworktime,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      ContactTel = #{contacttel,jdbcType=VARCHAR},
+      Manager1 = #{manager1,jdbcType=VARCHAR},
+      Manager1Tel = #{manager1tel,jdbcType=VARCHAR},
+      Manager2 = #{manager2,jdbcType=VARCHAR},
+      Manager2Tel = #{manager2tel,jdbcType=VARCHAR},
+      InputEmpId = #{inputempid,jdbcType=BIGINT},
+      InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where OrgId = #{orgid,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBySysOrganization" parameterType="com.project.mes.systemmanage.bean.SysOrganization">
+    <selectKey keyProperty="parentorgid" resultType="long" order="BEFORE">
+      select sys_organization.nextval from dual
+    </selectKey>
+    insert into sys_organization (OrgId,OrgName, CorpId, ParentOrgId,Level,
+      Tel, Address, OnWorkTime,
+      OffWorkTime, Contact, ContactTel,
+      Manager1, Manager1Tel, Manager2,
+      Manager2Tel, InputEmpId, InputEmpName,
+      InputDateTime, Remark)
+    values (null,#{orgname,jdbcType=VARCHAR}, #{corpid,jdbcType=BIGINT}, #{parentorgid,jdbcType=BIGINT},#{level},
+      #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{onworktime,jdbcType=VARCHAR},
+      #{offworktime,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{contacttel,jdbcType=VARCHAR},
+      #{manager1,jdbcType=VARCHAR}, #{manager1tel,jdbcType=VARCHAR}, #{manager2,jdbcType=VARCHAR},
+      #{manager2tel,jdbcType=VARCHAR}, #{inputempid,jdbcType=BIGINT}, #{inputempname,jdbcType=VARCHAR},
+      #{inputdatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mes.systemmanage.dao.SysPositionMapper">
+  <resultMap id="PositionMap" type="com.project.mes.systemmanage.bean.SysPosition">
+    <!--@mbg.generated-->
+    <id column="PostId" jdbcType="BIGINT" property="postid" />
+    <result column="PostName" jdbcType="VARCHAR" property="postname" />
+    <result column="CorpId" jdbcType="BIGINT" property="corpid" />
+    <result column="InputEmpId" jdbcType="BIGINT" property="inputempid" />
+    <result column="InputEmpName" jdbcType="VARCHAR" property="inputempname" />
+    <result column="InputDateTime" jdbcType="TIMESTAMP" property="inputdatetime" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Position_Column_List">
+    <!--@mbg.generated-->
+    PostId, PostName, CorpId, InputEmpId, InputEmpName, InputDateTime, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="PositionMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Position_Column_List" />
+    from sys_position
+    where PostId = #{postid,jdbcType=BIGINT}
+  </select>
+
+  <select id="countPosition" resultType="java.lang.Integer"   parameterType="com.project.mes.systemmanage.bean.SysPosition">
+    SELECT COUNT(*) FROM sys_position
+    <where>
+      <if test=" sysPosition.postname != null and sysPosition.postname != '' ">
+        <bind name="pname" value=" '%' + sysPosition.postname + '%' "></bind>
+        PostName like #{pname}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectPosition" resultMap="PositionMap" parameterType="com.project.mes.systemmanage.bean.SysPosition">
+    SELECT
+    <include refid="Position_Column_List"/>
+    FROM sys_position
+    <where>
+      <if test=" sysPosition.postname != null and sysPosition.postname != '' ">
+        <bind name="pname" value=" '%' + sysPosition.postname + '%' "></bind>
+        PostName like #{pname}
+      </if>
+    </where>
+    limit ${startIndex},${pageSize}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_position
+    where PostId = #{postid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="PostId" keyProperty="postid" parameterType="com.project.mes.systemmanage.bean.SysPosition" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_position (PostName, CorpId, InputEmpId, 
+      InputEmpName, InputDateTime, Remark
+      )
+    values (#{postname,jdbcType=VARCHAR}, #{corpid,jdbcType=BIGINT}, #{inputempid,jdbcType=BIGINT}, 
+      #{inputempname,jdbcType=VARCHAR}, #{inputdatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="PostId" keyProperty="postid" parameterType="com.project.mes.systemmanage.bean.SysPosition" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="postname != null">
+        PostName,
+      </if>
+      <if test="corpid != null">
+        CorpId,
+      </if>
+      <if test="inputempid != null">
+        InputEmpId,
+      </if>
+      <if test="inputempname != null">
+        InputEmpName,
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="postname != null">
+        #{postname,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempid != null">
+        #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.mes.systemmanage.bean.SysPosition">
+    <!--@mbg.generated-->
+    update sys_position
+    <set>
+      <if test="postname != null">
+        PostName = #{postname,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        CorpId = #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempid != null">
+        InputEmpId = #{inputempid,jdbcType=BIGINT},
+      </if>
+      <if test="inputempname != null">
+        InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PostId = #{postid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.mes.systemmanage.bean.SysPosition">
+    <!--@mbg.generated-->
+    update sys_position
+    set PostName = #{postname,jdbcType=VARCHAR},
+      CorpId = #{corpid,jdbcType=BIGINT},
+      InputEmpId = #{inputempid,jdbcType=BIGINT},
+      InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where PostId = #{postid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mes.systemmanage.dao.SysEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.project.mes.systemmanage.bean.SysEmployee">
+    <!--@mbg.generated-->
+    <id column="EmpId" jdbcType="BIGINT" property="empid" />
+    <result column="EmpName" jdbcType="VARCHAR" property="empname" />
+    <result column="EmpNo" jdbcType="VARCHAR" property="empno" />
+    <result column="Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="Birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="IdCardNo" jdbcType="VARCHAR" property="idcardno" />
+    <result column="InDate" jdbcType="TIMESTAMP" property="indate" />
+    <result column="OutDate" jdbcType="TIMESTAMP" property="outdate" />
+    <result column="WorkType" jdbcType="VARCHAR" property="worktype" />
+    <result column="CorpId" jdbcType="BIGINT" property="corpid" />
+
+    <result column="FactoryId" jdbcType="BIGINT" property="factoryid" />
+    <result column="WorkShopId" jdbcType="BIGINT" property="workShopid" />
+    <result column="ClassId" jdbcType="BIGINT" property="classid" />
+
+    <result column="PosId" jdbcType="BIGINT" property="posid" />
+    <result column="CardNo" jdbcType="VARCHAR" property="cardno" />
+    <result column="CardBank" jdbcType="VARCHAR" property="cardbank" />
+    <result column="Tel" jdbcType="VARCHAR" property="tel" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="InputEmpId" jdbcType="VARCHAR" property="inputempid" />
+    <result column="InputEmpName" jdbcType="VARCHAR" property="inputempname" />
+    <result column="InputDateTime" jdbcType="TIMESTAMP" property="inputdatetime" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="Status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    EmpId, EmpName, EmpNo, Sex, Birthday, IdCardNo, InDate, OutDate, WorkType, CorpId,
+    FactoryId,WorkShopId,ClassId, PosId, CardNo, CardBank, Tel, Email, Passwd, InputEmpId, InputEmpName, InputDateTime,
+     Remark, `Status`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where EmpId = #{empid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_employee
+    where EmpId = #{empid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="EmpId" keyProperty="empid" parameterType="com.project.mes.systemmanage.bean.SysEmployee" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_employee (EmpName, EmpNo, Sex, 
+      Birthday, IdCardNo, InDate, 
+      OutDate, WorkType, CorpId,
+      FactoryId,WorkShopId,ClassId, PosId, CardNo,
+      CardBank, Tel, Email, 
+      Passwd, InputEmpId, InputEmpName, 
+      InputDateTime, Remark, `Status`
+      )
+    values (#{empname,jdbcType=VARCHAR}, #{empno,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{idcardno,jdbcType=VARCHAR}, #{indate,jdbcType=TIMESTAMP}, 
+      #{outdate,jdbcType=TIMESTAMP}, #{worktype,jdbcType=VARCHAR}, #{corpid,jdbcType=BIGINT}, 
+      #{factoryid,jdbcType=BIGINT},#{workShopid,jdbcType=BIGINT},#{classid,jdbcType=BIGINT}, #{posid,jdbcType=BIGINT}, #{cardno,jdbcType=VARCHAR},
+      #{cardbank,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{inputempid,jdbcType=VARCHAR}, #{inputempname,jdbcType=VARCHAR}, 
+      #{inputdatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="EmpId" keyProperty="empid" parameterType="com.project.mes.systemmanage.bean.SysEmployee" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empname != null">
+        EmpName,
+      </if>
+      <if test="empno != null">
+        EmpNo,
+      </if>
+      <if test="sex != null">
+        Sex,
+      </if>
+      <if test="birthday != null">
+        Birthday,
+      </if>
+      <if test="idcardno != null">
+        IdCardNo,
+      </if>
+      <if test="indate != null">
+        InDate,
+      </if>
+      <if test="outdate != null">
+        OutDate,
+      </if>
+      <if test="worktype != null">
+        WorkType,
+      </if>
+      <if test="corpid != null">
+        CorpId,
+      </if>
+      <if test="factoryid != null">
+        FactoryId,
+      </if>
+      <if test="workShopid != null">
+        WorkShopId,
+      </if>
+      <if test="classid != null">
+        ClassId,
+      </if>
+      <if test="posid != null">
+        PosId,
+      </if>
+      <if test="cardno != null">
+        CardNo,
+      </if>
+      <if test="cardbank != null">
+        CardBank,
+      </if>
+      <if test="tel != null">
+        Tel,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="passwd != null">
+        Passwd,
+      </if>
+      <if test="inputempid != null">
+        InputEmpId,
+      </if>
+      <if test="inputempname != null">
+        InputEmpName,
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="status != null">
+        `Status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empname != null">
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empno != null">
+        #{empno,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null">
+        #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate != null">
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="worktype != null">
+        #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="factoryid != null">
+        #{factoryid,jdbcType=BIGINT},
+      </if>
+      <if test="workShopid != null">
+        #{workShopid,jdbcType=BIGINT},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=BIGINT},
+      </if>
+      <if test="posid != null">
+        #{posid,jdbcType=BIGINT},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardbank != null">
+        #{cardbank,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempid != null">
+        #{inputempid,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempname != null">
+        #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    <!--@mbg.generated-->
+    update sys_employee
+    <set>
+      <if test="empname != null">
+        EmpName = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empno != null">
+        EmpNo = #{empno,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null">
+        IdCardNo = #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        InDate = #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate != null">
+        OutDate = #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="worktype != null">
+        WorkType = #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="corpid != null">
+        CorpId = #{corpid,jdbcType=BIGINT},
+      </if>
+      <if test="factoryid != null">
+        FactoryId = #{factoryid,jdbcType=BIGINT},
+      </if>
+      <if test="workShopid != null">
+        WorkShopId = #{workShopid,jdbcType=BIGINT},
+      </if>
+      <if test="classid != null">
+        ClassId = #{classid,jdbcType=BIGINT},
+      </if>
+      <if test="posid != null">
+        PosId = #{posid,jdbcType=BIGINT},
+      </if>
+      <if test="cardno != null">
+        CardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardbank != null">
+        CardBank = #{cardbank,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        Tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        Passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempid != null">
+        InputEmpId = #{inputempid,jdbcType=VARCHAR},
+      </if>
+      <if test="inputempname != null">
+        InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdatetime != null">
+        InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `Status` = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EmpId = #{empid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    <!--@mbg.generated-->
+    update sys_employee
+    set EmpName = #{empname,jdbcType=VARCHAR},
+      EmpNo = #{empno,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      IdCardNo = #{idcardno,jdbcType=VARCHAR},
+      InDate = #{indate,jdbcType=TIMESTAMP},
+      OutDate = #{outdate,jdbcType=TIMESTAMP},
+      WorkType = #{worktype,jdbcType=VARCHAR},
+      CorpId = #{corpid,jdbcType=BIGINT},
+      FactoryId = #{factoryid,jdbcType=BIGINT},
+      WorkShopId = #{workShopid,jdbcType=BIGINT},
+      ClassId = #{classid,jdbcType=BIGINT},
+      PosId = #{posid,jdbcType=BIGINT},
+      CardNo = #{cardno,jdbcType=VARCHAR},
+      CardBank = #{cardbank,jdbcType=VARCHAR},
+      Tel = #{tel,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      Passwd = #{passwd,jdbcType=VARCHAR},
+      InputEmpId = #{inputempid,jdbcType=VARCHAR},
+      InputEmpName = #{inputempname,jdbcType=VARCHAR},
+      InputDateTime = #{inputdatetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR},
+      `Status` = #{status,jdbcType=VARCHAR}
+    where EmpId = #{empid,jdbcType=BIGINT}
+  </update>
+  <select id="selectSysEmployeeAll" parameterType="com.project.mes.systemmanage.bean.SysEmployee"
+          resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from sys_employee
+    <where>
+      <if test=" sysEmployee.empname != null and sysEmployee.empname != '' ">
+        and <bind name="ename" value=" '%' + sysEmployee.empname + '%' "></bind>
+        PostName like #{ename}
+      </if>
+      <if test=" sysEmployee.worktype != null and sysEmployee.worktype != ''">
+        and <bind name="stype" value=" '%' + sysEmployee.worktype + '%' "></bind>
+        PostName like #{stype}
+      </if>
+    </where>
+    limit ${startIndex},${pageSize}
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    select count(*) from sys_employee
+    <where>
+      <if test=" sysEmployee.empname != null and sysEmployee.empname != '' ">
+        and <bind name="ename" value=" '%' + sysEmployee.empname + '%' "></bind>
+        PostName like #{ename}
+      </if>
+      <if test=" sysEmployee.worktype != null and sysEmployee.worktype != ''">
+        and <bind name="stype" value=" '%' + sysEmployee.worktype + '%' "></bind>
+        PostName like #{stype}
+      </if>
+    </where>
+  </select>
+  <update id="deleteSysEmployee" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    update sys_employee set Status=#{param1.status,jdbcType=VARCHAR} where EmpId=#{param1.empid,jdbcType=BIGINT}
+  </update>
+  <select id="findAllBy" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    select <include refid="Base_Column_List"/>
+    from sys_employee
+    where Status=1
+    <if test=" sysEmployee.empname != null and sysEmployee.empname != '' ">
+      and <bind name="ename" value=" '%' + sysEmployee.empname + '%' "></bind>
+      PostName like #{ename}
+    </if>
+    <if test=" sysEmployee.worktype != null and sysEmployee.worktype != ''">
+      and <bind name="stype" value=" '%' + sysEmployee.worktype + '%' "></bind>
+      PostName like #{stype}
+    </if>
+    limit ${startIndex},${pageSize}
+  </select>
+  <select id="selectByCount" resultType="java.lang.Integer" parameterType="com.project.mes.systemmanage.bean.SysEmployee">
+    select count(*) from sys_employee
+    where Status=1
+    <if test=" sysEmployee.empname != null and sysEmployee.empname != '' ">
+      and <bind name="ename" value=" '%' + sysEmployee.empname + '%' "></bind>
+      PostName like #{ename}
+    </if>
+    <if test=" sysEmployee.worktype != null and sysEmployee.worktype != ''">
+      and <bind name="stype" value=" '%' + sysEmployee.worktype + '%' "></bind>
+      PostName like #{stype}
+    </if>
+  </select>
+</mapper>
